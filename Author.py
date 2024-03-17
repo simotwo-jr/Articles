@@ -7,7 +7,7 @@ class Author:
         self._name = name
         self._articles = []
 
-         def name(self):
+    def name(self):
         return self._name
 
     def articles(self):
@@ -25,7 +25,7 @@ class Author:
         return list(set(article.magazine.category for article in self._articles))
     
     class Article:
-    def __init__(self, author, magazine, title):
+      def __init__(self, author, magazine, title):
         if not isinstance(author, Author):
             raise ValueError("Author must be an instance of Author")
         if not isinstance(magazine, Magazine):
@@ -36,7 +36,7 @@ class Author:
         self._magazine = magazine
         self._title = title
 
-           @property
+    @property
     def title(self):
         return self._title
 
@@ -48,7 +48,7 @@ class Author:
     def magazine(self):
         return self._magazine
     
-    class Magazine:
+class Magazine:
     _all_magazines = []
 
     def __init__(self, name, category):
