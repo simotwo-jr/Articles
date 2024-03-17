@@ -62,6 +62,39 @@ class Author:
         Magazine._all_magazines.append(self)
 
 
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def category(self):
+        return self._category
+
+    def articles(self):
+        return self._articles
+
+    def contributors(self):
+        return list(set(article.author for article in self._articles))
+
+    def add_article(self, author, title):
+        article = Article(author, self, title)
+        self._articles.append(article)
+        return article
+
+    def article_titles(self):
+        return [article.title for article in self._articles]
+
+    def contributing_authors(self):
+        return [author for author in set(article.author for article in self._articles)
+                if len([article for article in self._articles if article.author == author]) > 2]
+
+    @classmethod
+    def top_publisher(cls):
+        if not cls._all_magazines:
+            return None
+        return max(cls._all_magazines, key=lambda magazine: len(magazine.articles()))
+
+
 
 
         
